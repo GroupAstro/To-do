@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>Login Prototype | Login Page CSS</title>
+
+
+	<meta name="msapplication-TileColor" content="#fdcb04" />
+	<meta name="theme-color" content="#fdcb04" />
+
+    <link rel="stylesheet" href="../shared/normalize.css">
+    <link rel="stylesheet" href="../shared/additional.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="box-left">
+                <div class="image-logo">
+                    <img src="icon.jpeg" style="height: 100px;">
+                </div>
+            </div>
+            <div class="box-right">
+                <div class="card">
+                    <div class="mobile-logo">
+                        <img src="icon.jpeg" style="height: 50px;">
+                    </div>
+                    <form id="form" class="card-form-login">
+                        <div class="form-input">
+                            <div class="pb-6">
+                                <input type="text" name="" id="contact" class="input" placeholder="Email or phone" required>
+                            </div>
+                            <div class="pt-6 pb-6">
+                                <input type="password" name="" id="password" class="input" placeholder="password" required>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <button submit class="button w-full bg-blue text-white font-20">Login</button>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="reg-page text-center">
+                        <a href="#" class="font-bold decoration-none hover-underline text-black">Innovative Software</a> For Your Needs.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+	<script>
+		document.getElementById("form").addEventListener("submit",function(event)
+		{
+			//event.preventDefault();
+			const username = document.getElementById("contact").value;
+			const password = document.getElementById("password").value;
+			if(btoa(username)&&btoa(password) =="cHJvdG90eXBl")
+			{
+				this.action = "../index.html"
+			} else{
+				alert("wrong details")
+			}
+		})
+	</script>
+
+</body>
+
+</html>
