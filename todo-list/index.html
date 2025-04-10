@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="night">
 <head>
-    <!-- Previous head content remains the same -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--- Tailwind CSS & Daisy UI CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.18.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="res/favicon.ico">
+
+    <title>TO-DOIT</title>
     <style>
-        /* Add sticky header styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: var(--fallback-b1,oklch(var(--b1)/1));
-            padding: 1rem 0;
-        }
-
-        .todos-filter {
-            position: fixed;
-            top: 140px; /* Adjust based on your header height */
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: var(--fallback-b1,oklch(var(--b1)/1));
-            padding: 1rem 0;
-        }
-
-        .container {
-            padding-top: 200px; /* Adjust based on combined header + filter height */
-        }
-
         @media (max-width: 530px) {
-            /* Previous mobile styles remain */
-            
-            /* Adjust container padding for mobile */
-            .container {
-                padding-top: 280px;
+            /* Hide table headers */
+            #parent-tr th:not(:first-child) {
+                display: none;
             }
             
-            .todos-filter {
-                top: 160px;
+            /* Convert table to block layout */
+            .table, .table tbody, .table tr, .table td {
+                display: block;
+                width: 100%;
+            }
+            
+            /* Position each row relatively */
+
+            
+            
+            /* Add pseudo-element labels for mobile */
+            .table td:nth-child(1)::before {
+                content: "Task: ";
+                font-weight: bold;
+            }
+            .table td:nth-child(2)::before {
+                content: "Due Date: ";
+                font-weight: bold;
+            }
+            .table td:nth-child(3)::before {
+                content: "Status: ";
+                font-weight: bold;
             }
         }
     </style>
@@ -52,8 +60,7 @@
     </footer>
     
     <div class="container">
-        <!-- Modified Header -->
-        <header class="w-full bg-base-100">
+        <header>
             <h1>Todo List(prototype)</h1>
             <!-- Error message -->
             <div class="alert-message"></div>
@@ -66,8 +73,7 @@
             </div>
         </header>
 
-        <!-- Modified Filter Section -->
-        <div class="todos-filter bg-base-100 w-full">
+        <div class="todos-filter">
             <div class="dropdown">
                 <label tabindex="0" class="btn m-1">Filter</label>
                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -81,9 +87,8 @@
             </button>
         </div>
 
-        <!-- Table -->
-		<table class="table w-full">
-			<thead>
+         <table class="table w-full">
+            <thead>
                 <tr id="parent-tr">
                     <th>Task</th>
                     <th>Due Date</th>
@@ -108,7 +113,9 @@
                 </tr>
             </tbody>
         </table>
+
     </div>
+
     <!--Theme switcher-->
     <div class="theme-switcher">
         <div class="dropdown dropdown-left">
@@ -133,5 +140,6 @@
 
     <!-- JS -->
     <script src="js/main.js"></script>
+
 </body>
 </html>
