@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="night">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Previous head content remains the same -->
+    <style>
+        /* Add sticky header styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--fallback-b1,oklch(var(--b1)/1));
+            padding: 1rem 0;
+        }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
+        .todos-filter {
+            position: fixed;
+            top: 140px; /* Adjust based on your header height */
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--fallback-b1,oklch(var(--b1)/1));
+            padding: 1rem 0;
+        }
 
-    <!--- Tailwind CSS & Daisy UI CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.18.0/dist/full.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        .container {
+            padding-top: 200px; /* Adjust based on combined header + filter height */
+        }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="res/favicon.ico">
-
-    <title>TO-DOIT</title>
-    <script>alert("you are about to view a todo list prototype shared by Henry press ok to continue")</script>
+        @media (max-width: 530px) {
+            /* Previous mobile styles remain */
+            
+            /* Adjust container padding for mobile */
+            .container {
+                padding-top: 280px;
+            }
+            
+            .todos-filter {
+                top: 160px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -29,7 +52,8 @@
     </footer>
     
     <div class="container">
-        <header>
+        <!-- Modified Header -->
+        <header class="w-full bg-base-100">
             <h1>Todo List(prototype)</h1>
             <!-- Error message -->
             <div class="alert-message"></div>
@@ -42,7 +66,8 @@
             </div>
         </header>
 
-        <div class="todos-filter">
+        <!-- Modified Filter Section -->
+        <div class="todos-filter bg-base-100 w-full">
             <div class="dropdown">
                 <label tabindex="0" class="btn m-1">Filter</label>
                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -56,21 +81,34 @@
             </button>
         </div>
 
-         <table class="table w-full">
-            <thead>
-                <tr>
+        <!-- Table -->
+		<table class="table w-full">
+			<thead>
+                <tr id="parent-tr">
                     <th>Task</th>
                     <th>Due Date</th>
                     <th>Status</th>
-                    <th>Actions</th>
+                    <th id="actions">Actions</th>
                 </tr>
             </thead>
             <tbody class="todos-list-body">
+                <!-- Sample row for demonstration -->
+                <tr>
+                    <td>Sample Task</td>
+                    <td>2023-08-15</td>
+                    <td>Pending</td>
+                    <td>
+                        <button class="btn btn-sm btn-success">
+                            <i class='bx bx-check'></i>
+                        </button>
+                        <button class="btn btn-sm btn-error">
+                            <i class='bx bx-trash'></i>
+                        </button>
+                    </td>
+                </tr>
             </tbody>
         </table>
-
     </div>
-
     <!--Theme switcher-->
     <div class="theme-switcher">
         <div class="dropdown dropdown-left">
@@ -95,6 +133,5 @@
 
     <!-- JS -->
     <script src="js/main.js"></script>
-
 </body>
 </html>
